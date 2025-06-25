@@ -7,6 +7,8 @@ class ApiResponse {
     }
 }
 
+export { ApiResponse }
+
 // statuscode-->
 // 1.information response (100 - 199)
 // 2.successful response (200 - 299)
