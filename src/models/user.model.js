@@ -61,6 +61,9 @@ userSchema.methods.isPasswordCorrect = async function(password) {
     return await bcrypt.compare(password, this.password)
 }
 
+//access token are short lived n expire early--> access token has authorize to access things but repeat
+// but refresh token are long lived --> whereas it has only hit the access token and not need to verify evertime
+
 userSchema.methods.generateAccessToken = function(){
     return jwt.sign(
         {
