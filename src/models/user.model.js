@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
     username: {
@@ -58,8 +58,8 @@ userSchema.pre("save", async function(next) {
 })
 
 userSchema.methods.isPasswordCorrect = async function(password) {
-    return await bcrypt.compare(password, this.password)
-}
+    return await bcrypt.compare(password, this.password);
+};
 
 //access token are short lived n expire early--> access token has authorize to access things but repeat
 // but refresh token are long lived --> whereas it has only hit the access token and not need to verify evertime
@@ -76,8 +76,8 @@ userSchema.methods.generateAccessToken = function(){
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRY
         }
-    )
-}
+    );
+};
 userSchema.methods.generateRefreshToken = function(){
         return jwt.sign(
         {
@@ -87,8 +87,8 @@ userSchema.methods.generateRefreshToken = function(){
         {
             expiresIn: process.env.REFRESH_TOKEN_EXPIRY
         }
-    )
-}
+    );
+};
 
 
 export const User = mongoose.model("User", userSchema);
